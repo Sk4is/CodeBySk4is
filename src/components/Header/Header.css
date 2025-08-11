@@ -1,0 +1,139 @@
+/* Header base */
+.site-header {
+  position: fixed;
+  top: 0;
+  inset-inline: 0;
+  z-index: 1000;
+  transition: background-color 220ms ease, backdrop-filter 220ms ease, box-shadow 220ms ease;
+  background-color: transparent;
+  backdrop-filter: none;
+}
+
+.site-header.is-scrolled {
+  background-color: rgba(0, 0, 0, 0.25); /* leve */
+  backdrop-filter: blur(10px);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+}
+
+.header-inner {
+  height: 64px;
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Logo */
+.brand-logo {
+    margin-top: 50%;
+    margin-left: -15%;
+  height: 136px;
+  width: auto;
+  display: block;
+}
+
+/* Botón hamburguesa */
+.hamburger {
+  --bar-h: 2px;
+  --bar-w: 22px;
+  --gap: 5px;
+  background: transparent;
+  border: 0;
+  padding: 10px;
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: var(--gap);
+  cursor: pointer;
+}
+
+.hamburger span {
+  display: block;
+  width: var(--bar-w);
+  height: var(--bar-h);
+  background: #fff;
+  border-radius: 2px;
+  transition: transform 200ms ease, opacity 200ms ease;
+}
+
+.hamburger.is-active span:nth-child(1) {
+  transform: translateY(calc(var(--gap) + var(--bar-h))) rotate(45deg);
+}
+.hamburger.is-active span:nth-child(2) {
+  opacity: 0;
+}
+.hamburger.is-active span:nth-child(3) {
+  transform: translateY(calc(-1 * (var(--gap) + var(--bar-h)))) rotate(-45deg);
+}
+
+/* Overlay con blur */
+.menu-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.3);       /* leve oscurecido */
+  backdrop-filter: blur(8px);         /* BLUR del overlay */
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 220ms ease;
+  z-index: 999; /* por debajo del header */
+}
+
+.menu-overlay.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Panel del menú */
+.menu-panel {
+  position: absolute;
+  top: 72px; /* bajo el header */
+  right: 16px;
+  left: 16px;
+  border-radius: 16px;
+  background: rgba(20, 20, 20, 0.7);  /* no transparente del todo */
+  backdrop-filter: blur(14px);
+  box-shadow: 0 20px 50px rgba(0,0,0,0.4);
+  transform: translateY(-10px);
+  opacity: 0;
+  transition: transform 220ms ease, opacity 220ms ease;
+}
+
+.menu-overlay.show .menu-panel {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.menu-panel ul {
+  list-style: none;
+  margin: 0;
+  padding: 18px 12px;
+  display: grid;
+  gap: 6px;
+}
+
+.menu-panel a {
+  display: block;
+  padding: 12px 14px;
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+  letter-spacing: .3px;
+  border-radius: 10px;
+  transition: background-color 160ms ease, transform 120ms ease;
+}
+
+.menu-panel a:hover {
+  background-color: rgba(255,255,255,0.08);
+  color: #00ffdd;
+  transform: translateX(2px);
+}
+
+/* Desktop: panel más estrecho */
+@media (min-width: 768px) {
+  .menu-panel {
+    right: 24px;
+    left: auto;
+    width: 380px;
+  }
+}

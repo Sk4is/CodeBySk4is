@@ -28,3 +28,13 @@
     linear-gradient(to bottom, transparent 0%, black 10%, black 90%, transparent 100%);
           mask-composite: intersect;
 }
+
+.letters-overlay {
+  position: absolute;
+  margin-top: 25%;
+  left: 50%;
+  transform: translateX(-50%); /* Centrado horizontalmente */
+  z-index: 2; /* Encima de la imagen */
+  width: auto; /* Ajusta al tamaño natural de la imagen */
+  max-width: 100%; /* Evita que se salga */
+}
