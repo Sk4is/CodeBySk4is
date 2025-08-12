@@ -1,0 +1,117 @@
+/* Sección */
+.pt-wrap {
+  position: relative;
+  min-height: 100svh;
+  width: 100%;
+  background: #000;
+  isolation: isolate;
+  overflow: hidden;
+}
+
+/* Fondo lejano */
+.pt-bg {
+  position: absolute;
+  inset: 0;
+  background: center 50% / cover no-repeat;
+  will-change: transform, filter;
+  z-index: -1;
+  /* mueve por var(--py) + escala para cubrir bordes */
+  transform: translate3d(0, var(--py, 0px), 0) scale(1.12);
+  transform-origin: center;
+  pointer-events: none;
+  /* opcional: sutil distancia visual */
+  filter: brightness(0.92) saturate(0.95);
+}
+
+/* Difuminado negro superior */
+.pt-bg::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, rgba(0,0,0,1) 10%, rgba(0,0,0,0) 40%);
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* Contenido centrado */
+.pt-content {
+  min-height: 100svh;
+  display: grid;
+  place-items: center;
+  padding: 48px 16px;
+}
+
+/* Contenedor ancho */
+.pt-container { width: min(100%, 820px); margin: 0 auto; }
+
+/* Grid de tarjetas (capa cercana) */
+.pt-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(12px, 2.2vw, 24px);
+  justify-content: center;
+  /* extra de movimiento para simular cercanía */
+  transform: translate3d(0, var(--fy, 0px), 0);
+  will-change: transform;
+}
+
+/* Tarjeta */
+.pt-tile {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  border-radius: 16px;
+  overflow: hidden;
+  text-decoration: none;
+  /* sombra un poco más fuerte para separar del fondo */
+  box-shadow: 0 14px 36px rgba(0,0,0,.45);
+  outline: none;
+  transition: box-shadow .2s ease, transform .2s ease;
+}
+.pt-tile:hover,
+.pt-tile:focus-visible {
+  box-shadow: 0 18px 48px rgba(0,0,0,.55);
+  transform: translateY(-2px);
+}
+
+/* Imagen B/N → color al hover */
+.pt-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  filter: grayscale(100%) contrast(1.05) saturate(0.85);
+  transition: filter .3s ease, transform .3s ease;
+}
+.pt-tile:hover .pt-img,
+.pt-tile:focus-visible .pt-img {
+  filter: grayscale(0%) contrast(1) saturate(1);
+  transform: scale(1.03);
+}
+
+/* Label */
+.pt-label {
+  position: absolute;
+  inset: auto 0 0 0;
+  padding: 14px 16px;
+  text-align: center;
+  color: #fff;
+  font-weight: 800;
+  letter-spacing: .6px;
+  background: linear-gradient(to top, rgba(0,0,0,.55), rgba(0,0,0,0));
+  text-shadow: 0 2px 8px rgba(0,0,0,.6);
+  pointer-events: none;
+  font-size: clamp(14px, 2.2vw, 18px);
+}
+
+/* Responsive */
+@media (max-width: 680px) {
+  .pt-container { width: min(94vw, 560px); }
+  .pt-grid { gap: 12px; }
+}
+
+/* Accesibilidad */
+@media (prefers-reduced-motion: reduce) {
+  .pt-img { transition: none; }
+  .pt-grid { transform: none !important; }
+  .pt-bg { transform: none !important; }
+}

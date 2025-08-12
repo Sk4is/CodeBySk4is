@@ -60,7 +60,6 @@ export default function Header() {
             <li><a href="#sobre-mi" onClick={closeMenu}>SOBRE MÍ</a></li>
             <li><a href="#habilidades" onClick={closeMenu}>HABILIDADES</a></li>
             <li><a href="#proyectos" onClick={closeMenu}>PROYECTOS</a></li>
-            <li><a href="#blog" onClick={closeMenu}>BLOG</a></li>
             <li><a href="#contacto" onClick={closeMenu}>CONTACTO</a></li>
           </ul>
         </nav>

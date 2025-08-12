@@ -5,13 +5,15 @@
 }
 
 .bg-fixed {
-  position: fixed;
-  inset: 0;
+  position: relative;
+  min-height: 100vh;  /* hero = primer pantallazo */
+  inset: auto;        /* por si heredó */
   background-color: black;
   display: flex;
   align-items: flex-start;
   justify-content: center;
-  z-index: -1;
+  z-index: 0;         /* vuelve al flujo normal */
+  overflow: hidden;   /* por si las máscaras sobresalen */
 }
 
 .bg-image {
@@ -31,10 +33,10 @@
 
 .letters-overlay {
   position: absolute;
-  margin-top: 25%;
+  top: 47%;
   left: 50%;
-  transform: translateX(-50%); /* Centrado horizontalmente */
-  z-index: 2; /* Encima de la imagen */
-  width: auto; /* Ajusta al tamaño natural de la imagen */
-  max-width: 100%; /* Evita que se salga */
+  transform: translateX(-50%) translateY(var(--ly, 0px)) translateZ(0);
+  will-change: transform;
+  pointer-events: none;
 }
+

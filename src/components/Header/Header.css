@@ -23,11 +23,9 @@
   justify-content: space-between;
 }
 
-/* Logo */
 .brand-logo {
-    margin-top: 50%;
-    margin-left: -15%;
-  height: 136px;
+  margin: 0;        /* ✨ quita márgenes problemáticos */
+  height: 70px;     /* ajusta tamaño visual */
   width: auto;
   display: block;
 }
@@ -67,41 +65,48 @@
   transform: translateY(calc(-1 * (var(--gap) + var(--bar-h)))) rotate(-45deg);
 }
 
-/* Overlay con blur */
-.menu-overlay {
+/* Overlay (capa completa) */
+.menu-overlay{
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,0.3);       /* leve oscurecido */
-  backdrop-filter: blur(8px);         /* BLUR del overlay */
+  background: rgba(0,0,0,.3);
+  backdrop-filter: blur(8px);
+  z-index: 999;
   opacity: 0;
   pointer-events: none;
-  transition: opacity 220ms ease;
-  z-index: 999; /* por debajo del header */
+  visibility: hidden;                 /* oculto de verdad */
+  display: none;                      /* 👈 no ocupa nada cerrado */
+  transition: opacity .22s ease, visibility 0s linear .22s;
 }
-
-.menu-overlay.show {
+.menu-overlay.show{
   opacity: 1;
   pointer-events: auto;
+  visibility: visible;
+  display: block;                     /* 👈 solo existe abierto */
+  transition: opacity .22s ease;
 }
 
-/* Panel del menú */
-.menu-panel {
+/* Panel del menú (el que deja la franja de ~380px) */
+.menu-panel{
   position: absolute;
-  top: 72px; /* bajo el header */
+  top: 72px;
   right: 16px;
   left: 16px;
   border-radius: 16px;
-  background: rgba(20, 20, 20, 0.7);  /* no transparente del todo */
+  background: rgba(20,20,20,.7);
   backdrop-filter: blur(14px);
-  box-shadow: 0 20px 50px rgba(0,0,0,0.4);
+  box-shadow: 0 20px 50px rgba(0,0,0,.4);
   transform: translateY(-10px);
   opacity: 0;
-  transition: transform 220ms ease, opacity 220ms ease;
+  pointer-events: none;
+  display: none;                      /* 👈 no pinta ni ocupa cerrado */
+  transition: transform .22s ease, opacity .22s ease;
 }
-
-.menu-overlay.show .menu-panel {
+.menu-overlay.show .menu-panel{
   transform: translateY(0);
   opacity: 1;
+  pointer-events: auto;
+  display: block;                     /* 👈 solo abierto */
 }
 
 .menu-panel ul {
