@@ -1,4 +1,3 @@
-/* Sección */
 .pt-wrap {
   position: relative;
   min-height: 100svh;
@@ -8,22 +7,18 @@
   overflow: hidden;
 }
 
-/* Fondo lejano */
 .pt-bg {
   position: absolute;
   inset: 0;
   background: center 50% / cover no-repeat;
   will-change: transform, filter;
   z-index: -1;
-  /* mueve por var(--py) + escala para cubrir bordes */
-  transform: translate3d(0, var(--py, 0px), 0) scale(1.12);
+  transform: translate3d(0, var(--py, 0px), 0) scale(1);
   transform-origin: center;
   pointer-events: none;
-  /* opcional: sutil distancia visual */
   filter: brightness(0.92) saturate(0.95);
 }
 
-/* Difuminado negro superior */
 .pt-bg::before {
   content: "";
   position: absolute;
@@ -33,7 +28,6 @@
   pointer-events: none;
 }
 
-/* Contenido centrado */
 .pt-content {
   min-height: 100svh;
   display: grid;
@@ -41,28 +35,23 @@
   padding: 48px 16px;
 }
 
-/* Contenedor ancho */
 .pt-container { width: min(100%, 820px); margin: 0 auto; }
 
-/* Grid de tarjetas (capa cercana) */
 .pt-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: clamp(12px, 2.2vw, 24px);
   justify-content: center;
-  /* extra de movimiento para simular cercanía */
   transform: translate3d(0, var(--fy, 0px), 0);
   will-change: transform;
 }
 
-/* Tarjeta */
 .pt-tile {
   position: relative;
   aspect-ratio: 1 / 1;
   border-radius: 16px;
   overflow: hidden;
   text-decoration: none;
-  /* sombra un poco más fuerte para separar del fondo */
   box-shadow: 0 14px 36px rgba(0,0,0,.45);
   outline: none;
   transition: box-shadow .2s ease, transform .2s ease;
@@ -73,7 +62,6 @@
   transform: translateY(-2px);
 }
 
-/* Imagen B/N → color al hover */
 .pt-img {
   width: 100%;
   height: 100%;
@@ -88,7 +76,6 @@
   transform: scale(1.03);
 }
 
-/* Label */
 .pt-label {
   position: absolute;
   inset: auto 0 0 0;
@@ -103,13 +90,29 @@
   font-size: clamp(14px, 2.2vw, 18px);
 }
 
-/* Responsive */
+.page-enter {
+  opacity: 0;
+  transform: translateY(16px);
+  filter: blur(4px);
+}
+.page-enter.page-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  filter: blur(0);
+  transition: opacity .6s ease, transform .6s ease, filter .6s ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page-enter { opacity: 1; transform: none; filter: none; }
+  .page-enter.page-enter-active { transition: none; }
+}
+
+
 @media (max-width: 680px) {
   .pt-container { width: min(94vw, 560px); }
   .pt-grid { gap: 12px; }
 }
 
-/* Accesibilidad */
 @media (prefers-reduced-motion: reduce) {
   .pt-img { transition: none; }
   .pt-grid { transform: none !important; }

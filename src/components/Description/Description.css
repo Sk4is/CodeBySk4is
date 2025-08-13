@@ -1,0 +1,92 @@
+:root { --header-h: 72px; }
+
+html, body, #root { background:#000; min-height:100%; }
+
+.desc-wrap{
+  position: relative;
+  min-height: 100svh;
+  width: 100%;
+  background: #000;
+  isolation: isolate;
+  overflow: hidden;
+  padding-top: var(--header-h);
+  margin-top: -2%;
+}
+
+.desc-bg{
+  position: absolute;
+  inset: 0;
+  background: center 50% / cover no-repeat;
+  will-change: transform, filter;
+  z-index: -1;
+  transform: translate3d(0, var(--py, 0px), 0) scale(1);
+  transform-origin: center;
+  filter: brightness(0.92) saturate(0.95);
+}
+
+.desc-bg::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background: linear-gradient(to bottom, rgba(0,0,0,1) 2%, rgba(0,0,0,0) 40%);
+  z-index:1;
+  pointer-events:none;
+}
+
+.desc-content{
+  min-height: calc(100svh - var(--header-h));
+  display: grid;
+  place-items: center;
+  padding: 48px 16px 72px;
+  position: relative;
+  z-index: 2;
+}
+
+.desc-container{ width: min(100%, 960px); margin: 0 auto; }
+
+.desc-title{
+  font-size: 40px;
+  text-align: center;
+  margin-bottom: 50px;
+  color: #00e5ff;
+  text-shadow: 0 0 8px rgba(0, 229, 255, 0.4);
+}
+
+ul.list li {
+  padding-left: 2em;
+}
+
+.desc-section{
+  background: rgba(10, 14, 20, 0.7);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 16px;
+  padding: 24px;
+  margin-bottom: 30px;
+  backdrop-filter: blur(10px);
+  transition: transform .6s ease, opacity .6s ease;
+}
+.desc-section h3{ color:#ff3b3b; margin-bottom:12px; font-size: 24px;}
+.desc-section p, .desc-section li{ line-height:1.6; }
+.desc-section ul{ list-style:none; padding:0; margin:0; }
+.desc-section li{ margin-bottom:14px; }
+
+.desc-skills{ display:flex; flex-wrap:wrap; gap:10px; }
+.desc-skills span{
+  padding:6px 12px;
+  background: rgba(255,255,255,0.08);
+  border-radius:8px;
+  font-size:.9rem;
+  border:1px solid rgba(255,255,255,0.1);
+  transition: transform .2s ease, background-color .2s ease;
+  cursor: pointer;
+}
+.desc-skills span:hover{ transform:translateY(-2px); background:rgba(0,229,255,0.15); }
+
+.hidden{ opacity:0; transform: translateY(30px); }
+.show{ opacity:1; transform: translateY(0); }
+
+@media (max-width: 680px){
+  .desc-container{ width: min(94vw, 560px); }
+}
+
+#curriculum{ scroll-margin-top: calc(var(--header-h) + 16px); }

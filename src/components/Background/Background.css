@@ -1,19 +1,20 @@
 :root {
-  --bg-img-width: 72%;   /* Ancho ajustable */
-  --bg-img-height: 88%;  /* Alto ajustable */
-  --bg-img-scale-x: 1.15; /* Estirado horizontal ajustable */
+  --bg-img-width: 72%;
+  --bg-img-height: 88%;
+  --bg-img-scale-x: 1.15;
 }
 
 .bg-fixed {
   position: relative;
-  min-height: 100vh;  /* hero = primer pantallazo */
-  inset: auto;        /* por si heredó */
+  min-height: 100vh;
+  inset: auto;
   background-color: black;
   display: flex;
   align-items: flex-start;
   justify-content: center;
-  z-index: 0;         /* vuelve al flujo normal */
-  overflow: hidden;   /* por si las máscaras sobresalen */
+  z-index: 0;
+  overflow: hidden;
+  perspective: 900px;
 }
 
 .bg-image {
@@ -33,10 +34,39 @@
 
 .letters-overlay {
   position: absolute;
-  top: 47%;
+  width: 35%;
+  top: 25%;
   left: 50%;
-  transform: translateX(-50%) translateY(var(--ly, 0px)) translateZ(0);
+  transform:
+    translateX(calc(-50% + var(--mx, 0px)))
+    translateY(var(--ly, 0px))
+    translateZ(0)
+    rotateX(var(--rx, 0deg))
+    rotateY(var(--ry, 0deg));
+  transform-style: preserve-3d;
   will-change: transform;
   pointer-events: none;
 }
 
+.page-enter {
+  opacity: 0;
+  transform: translateY(16px);
+  filter: blur(4px);
+}
+.page-enter.page-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  filter: blur(0);
+  transition: opacity .6s ease, transform .6s ease, filter .6s ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page-enter { opacity: 1; transform: none; filter: none; }
+  .page-enter.page-enter-active { transition: none; }
+  .letters-overlay {
+    transform:
+      translateX(-50%)
+      translateY(var(--ly, 0px))
+      translateZ(0);
+  }
+}

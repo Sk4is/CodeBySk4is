@@ -1,8 +1,8 @@
 :root{
   --ft-bg: rgba(10,14,20,0.7);
   --ft-border: rgba(255,255,255,0.08);
-  --ft-accent-1: #00e5ff;  /* cian neón */
-  --ft-accent-2: #ff3b3b;  /* rojo neón */
+  --ft-accent-1: #00e5ff;
+  --ft-accent-2: #ff3b3b;
   --ft-text: #d6e2e9;
 }
 
@@ -16,7 +16,6 @@
   isolation: isolate;
 }
 
-/* línea neón superior */
 .ft-divider{
   height: 2px;
   background: linear-gradient(90deg, transparent, var(--ft-accent-1), var(--ft-accent-2), transparent);
@@ -24,14 +23,14 @@
   opacity: .9;
 }
 
-/* interior */
-.ft-inner{
+.ft-inner {
   max-width: 1024px;
   margin: 0 auto;
   padding: 28px 16px 10px;
-  display: grid;
-  grid-template-columns: 1.2fr 2fr;
-  gap: 28px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 50px;
 }
 
 .ft-brand .ft-logo img{
@@ -47,11 +46,14 @@
   opacity: .85;
 }
 
-/* nav */
-.ft-nav{
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0,1fr));
-  gap: 18px;
+.ft-brand {
+  text-align: center;
+}
+
+.ft-nav {
+  display: flex;
+  gap: 50px;
+  justify-content: center;
 }
 
 .ft-col h3{
@@ -86,7 +88,6 @@
   text-shadow: 0 0 8px rgba(0,229,255,.35);
 }
 
-/* social */
 .ft-social{
   display: flex;
   gap: 12px;
@@ -115,7 +116,6 @@
     0 0 18px rgba(255,59,59,.18) inset;
 }
 
-/* bottom row */
 .ft-bottom{
   max-width: 1024px;
   margin: 8px auto 0;
@@ -146,7 +146,6 @@
   box-shadow: 0 0 12px rgba(0,229,255,.25);
 }
 
-/* responsive */
 @media (max-width: 880px){
   .ft-inner{
     grid-template-columns: 1fr;
@@ -160,7 +159,6 @@
   .ft-bottom{ flex-direction: column; gap: 10px; }
 }
 
-/* accesibilidad */
 @media (prefers-reduced-motion: reduce){
   .ico, .ft-col a, .ft-top { transition: none; }
 }

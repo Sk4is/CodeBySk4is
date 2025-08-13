@@ -5,7 +5,6 @@ export default function Header() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
-  // Cambia estilo al hacer scroll
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 0);
     onScroll();
@@ -13,7 +12,6 @@ export default function Header() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // Evita scroll del body cuando el menú está abierto
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
   }, [open]);
@@ -43,7 +41,6 @@ export default function Header() {
         </div>
       </header>
 
-      {/* Overlay + menú con blur */}
       <div
         className={`menu-overlay ${open ? "show" : ""}`}
         role="dialog"
@@ -56,11 +53,11 @@ export default function Header() {
           onClick={(e) => e.stopPropagation()}
         >
           <ul className="menu-list">
-            <li><a href="#inicio" onClick={closeMenu}>INICIO</a></li>
-            <li><a href="#sobre-mi" onClick={closeMenu}>SOBRE MÍ</a></li>
-            <li><a href="#habilidades" onClick={closeMenu}>HABILIDADES</a></li>
-            <li><a href="#proyectos" onClick={closeMenu}>PROYECTOS</a></li>
-            <li><a href="#contacto" onClick={closeMenu}>CONTACTO</a></li>
+            <li><a href="/" onClick={closeMenu}>INICIO</a></li>
+            <li><a href="/sobre-mi" onClick={closeMenu}>SOBRE MÍ</a></li>
+            <li><a href="/habilidades" onClick={closeMenu}>HABILIDADES</a></li>
+            <li><a href="/proyectos" onClick={closeMenu}>PROYECTOS</a></li>
+            <li><a href="/contacto" onClick={closeMenu}>CONTACTO</a></li>
           </ul>
         </nav>
       </div>

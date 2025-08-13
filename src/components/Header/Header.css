@@ -1,4 +1,3 @@
-/* Header base */
 .site-header {
   position: fixed;
   top: 0;
@@ -10,7 +9,7 @@
 }
 
 .site-header.is-scrolled {
-  background-color: rgba(0, 0, 0, 0.25); /* leve */
+  background-color: rgba(0, 0, 0, 0.25);
   backdrop-filter: blur(10px);
   box-shadow: 0 6px 20px rgba(0,0,0,0.25);
 }
@@ -24,13 +23,12 @@
 }
 
 .brand-logo {
-  margin: 0;        /* ✨ quita márgenes problemáticos */
-  height: 70px;     /* ajusta tamaño visual */
+  margin: 0;
+  height: 70px;
   width: auto;
   display: block;
 }
 
-/* Botón hamburguesa */
 .hamburger {
   --bar-h: 2px;
   --bar-w: 22px;
@@ -65,7 +63,6 @@
   transform: translateY(calc(-1 * (var(--gap) + var(--bar-h)))) rotate(-45deg);
 }
 
-/* Overlay (capa completa) */
 .menu-overlay{
   position: fixed;
   inset: 0;
@@ -74,19 +71,18 @@
   z-index: 999;
   opacity: 0;
   pointer-events: none;
-  visibility: hidden;                 /* oculto de verdad */
-  display: none;                      /* 👈 no ocupa nada cerrado */
+  visibility: hidden;
+  display: none;
   transition: opacity .22s ease, visibility 0s linear .22s;
 }
 .menu-overlay.show{
   opacity: 1;
   pointer-events: auto;
   visibility: visible;
-  display: block;                     /* 👈 solo existe abierto */
+  display: block;
   transition: opacity .22s ease;
 }
 
-/* Panel del menú (el que deja la franja de ~380px) */
 .menu-panel{
   position: absolute;
   top: 72px;
@@ -99,14 +95,14 @@
   transform: translateY(-10px);
   opacity: 0;
   pointer-events: none;
-  display: none;                      /* 👈 no pinta ni ocupa cerrado */
+  display: none;
   transition: transform .22s ease, opacity .22s ease;
 }
 .menu-overlay.show .menu-panel{
   transform: translateY(0);
   opacity: 1;
   pointer-events: auto;
-  display: block;                     /* 👈 solo abierto */
+  display: block;
 }
 
 .menu-panel ul {
@@ -134,7 +130,6 @@
   transform: translateX(2px);
 }
 
-/* Desktop: panel más estrecho */
 @media (min-width: 768px) {
   .menu-panel {
     right: 24px;
