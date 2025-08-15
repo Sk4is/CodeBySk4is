@@ -1,0 +1,369 @@
+import React, { useEffect, useRef, useState, useMemo } from "react";
+import "./Projects.css";
+
+const PROJECTS = [
+  {
+    title: "GameVault",
+    href: "https://game-vault-omega.vercel.app",
+    cover: "/images/gameVault.png",
+    year: "2025",
+    tags: ["React", "UI/UX", "JavaScript"],
+    desc: "Ecommerce rápido con animaciones y diseño responsive.",
+    longDesc:
+      "Tienda online con catálogo, buscador e integración SEO. Animaciones suaves, imágenes optimizadas y buenas Core Web Vitals.",
+    features: [
+      "Catálogo filtrable",
+      "Checkout simulado",
+      "Animaciones GSAP",
+      "Lighthouse > 90",
+    ],
+    stack: ["React", "Vite", "CSS Modules", "Lenis"],
+    repo: "https://github.com/Sk4is/gameVault",
+    demo: "https://game-vault-omega.vercel.app",
+    target: "_blank",
+  },
+  {
+    title: "Hotel Johnnie Walker",
+    href: "https://hoteljohnniewalker.vercel.app",
+    cover: "/images/hotelJohnnieWalker.png",
+    year: "2025",
+    tags: ["Three.js", "Vite"],
+    desc: "Experiencia 3D interactiva con rendimiento optimizado.",
+    longDesc:
+      "Escena 3D con interacción de cámara, carga diferida de modelos y fallback accesible para dispositivos modestos.",
+    features: ["Modelos GLTF", "Postprocesado", "Fallback 2D"],
+    stack: ["Three.js", "React Three Fiber", "Vite"],
+    repo: "https://github.com/RubenMRDev/hotelJohnnieWalker.git",
+    demo: "https://hoteljohnniewalker.vercel.app",
+    target: "_blank",
+  },
+  {
+    title: "Eye Of The Doom",
+    href: "https://eye-of-the-doom.vercel.app",
+    cover: "/images/eyeOfTheDoom.png",
+    year: "2024",
+    tags: ["React", "Charts", "API"],
+    desc: "Panel con gráficos en tiempo real y dark mode.",
+    longDesc:
+      "Consumo de API en streaming, caching y actualización en vivo de gráficas con diseño dark accesible.",
+    features: ["Streaming SSE", "Cache SWR", "Export CSV"],
+    stack: ["React", "Recharts", "SWR"],
+    repo: "https://github.com/LozzDev/EyeOfTheDoom.git",
+    demo: "https://eye-of-the-doom.vercel.app",
+    target: "_blank",
+  },
+  {
+    title: "To Do List",
+    href: "https://to-do-list-rose-theta-11.vercel.app",
+    cover: "/images/toDoList.png",
+    year: "2024",
+    tags: ["React", "Charts", "API"],
+    desc: "Panel con gráficos en tiempo real y dark mode.",
+    longDesc:
+      "Consumo de API en streaming, caching y actualización en vivo de gráficas con diseño dark accesible.",
+    features: ["Streaming SSE", "Cache SWR", "Export CSV"],
+    stack: ["React", "Recharts", "SWR"],
+    repo: "https://github.com/Sk4is/toDoList",
+    demo: "https://to-do-list-rose-theta-11.vercel.app",
+    target: "_blank",
+  },
+  {
+    title: "Breeze Flow",
+    cover: "/images/breezeFlow.png",
+    year: "2025",
+    tags: ["React", "Charts", "API"],
+    desc: "Panel con gráficos en tiempo real y dark mode.",
+    longDesc:
+      "Consumo de API en streaming, caching y actualización en vivo de gráficas con diseño dark accesible.",
+    features: ["Streaming SSE", "Cache SWR", "Export CSV"],
+    stack: ["React", "Recharts", "SWR"],
+    repo: "https://github.com/Bimai6/breeze-flow",
+    target: "_blank",
+  },
+  {
+    title: "Móstoles Web Agency",
+    href: "https://mostoles-web-design-silo.vercel.app",
+    cover: "/images/mostoles.png",
+    year: "2025",
+    tags: ["React", "Charts", "API"],
+    desc: "Panel con gráficos en tiempo real y dark mode.",
+    longDesc:
+      "Consumo de API en streaming, caching y actualización en vivo de gráficas con diseño dark accesible.",
+    features: ["Streaming SSE", "Cache SWR", "Export CSV"],
+    stack: ["React", "Recharts", "SWR"],
+    repo: "https://github.com/Sk4is/mostoles-web-design-silo",
+    demo: "https://mostoles-web-design-silo.vercel.app",
+    target: "_blank",
+  },
+  {
+    title: "Alcalá Web Agency",
+    cover: "/images/alcala.png",
+    year: "2025",
+    tags: ["React", "Charts", "API"],
+    desc: "Panel con gráficos en tiempo real y dark mode.",
+    longDesc:
+      "Consumo de API en streaming, caching y actualización en vivo de gráficas con diseño dark accesible.",
+    features: ["Streaming SSE", "Cache SWR", "Export CSV"],
+    stack: ["React", "Recharts", "SWR"],
+    repo: "https://github.com/Sk4is/alcala-web-craft",
+    target: "_blank",
+  },
+  {
+    title: "Skull King",
+    href: "https://skull-king-theta.vercel.app",
+    cover: "/images/skullKing.png",
+    year: "2026",
+    tags: ["React", "Charts", "API"],
+    desc: "Panel con gráficos en tiempo real y dark mode.",
+    longDesc:
+      "Consumo de API en streaming, caching y actualización en vivo de gráficas con diseño dark accesible.",
+    features: ["Streaming SSE", "Cache SWR", "Export CSV"],
+    stack: ["React", "Recharts", "SWR"],
+    repo: "https://github.com/Sk4is/skull-king",
+    demo: "https://skull-king-theta.vercel.app",
+    target: "_blank",
+  },
+  {
+    title: "Tetris",
+    cover: "/images/tetris.png",
+    year: "2025",
+    tags: ["React", "Charts", "API"],
+    desc: "Panel con gráficos en tiempo real y dark mode.",
+    longDesc:
+      "Consumo de API en streaming, caching y actualización en vivo de gráficas con diseño dark accesible.",
+    features: ["Streaming SSE", "Cache SWR", "Export CSV"],
+    stack: ["React", "Recharts", "SWR"],
+    repo: "https://github.com/Sk4is/tetris",
+    target: "_blank",
+  },
+];
+
+function ProjectCard({ p, idx, open, onToggle }) {
+  const panelRef = useRef(null);
+  const panelId = `proj-details-${idx}`;
+  const external = /^https?:\/\//i.test(p.href);
+  const linkProps = external
+    ? { href: p.href, target: "_blank", rel: "noreferrer" }
+    : { href: p.href };
+
+  useEffect(() => {
+    const el = panelRef.current;
+    if (!el) return;
+
+    if (open) {
+      el.style.height = el.scrollHeight + "px";
+      const toAuto = () => {
+        if (open) el.style.height = "auto";
+      };
+      el.addEventListener("transitionend", toAuto, { once: true });
+    } else {
+      const current = el.getBoundingClientRect().height;
+      el.style.height = current + "px";
+      el.offsetHeight;
+      el.style.height = "0px";
+    }
+  }, [open]);
+
+  return (
+    <article className="proj-card hidden">
+      <a className="proj-link" aria-label={`Abrir ${p.title}`} {...linkProps}>
+        <div className="proj-cover">
+          <img src={p.cover} alt={p.title} loading="lazy" />
+          <span className="proj-year">{p.year}</span>
+          <div className="proj-overlay">
+            <h3 className="proj-title">
+              {p.title} <i aria-hidden>↗</i>
+            </h3>
+          </div>
+        </div>
+      </a>
+
+      <div className="proj-meta">
+        <div className="proj-tags">
+          {p.tags?.map((t) => (
+            <span key={t}>{t}</span>
+          ))}
+        </div>
+        {p.desc ? <p className="proj-desc">{p.desc}</p> : null}
+
+        <button
+          type="button"
+          className={`proj-toggle ${open ? "is-open" : ""}`}
+          aria-expanded={open}
+          aria-controls={panelId}
+          onClick={onToggle}
+        >
+          {open ? "Ocultar detalles" : "Ver detalles"}
+          <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+            <path fill="currentColor" d="M7 10l5 5 5-5H7z" />
+          </svg>
+        </button>
+
+        <div
+          id={panelId}
+          ref={panelRef}
+          className={`proj-details ${open ? "open" : ""}`}
+          role="region"
+          aria-label={`Detalles de ${p.title}`}
+        >
+          <div className="proj-details-inner">
+            {p.longDesc && <p className="long">{p.longDesc}</p>}
+
+            <div className="details-cols">
+              {p.features?.length ? (
+                <div>
+                  <h4>Destacado</h4>
+                  <ul>
+                    {p.features.map((f) => (
+                      <li key={f}>{f}</li>
+                    ))}
+                  </ul>
+                </div>
+              ) : null}
+
+              {p.stack?.length ? (
+                <div>
+                  <h4>Tecnologías</h4>
+                  <div className="chips">
+                    {p.stack.map((s) => (
+                      <span key={s}>{s}</span>
+                    ))}
+                  </div>
+                </div>
+              ) : null}
+            </div>
+
+            {(p.repo || p.demo) && (
+              <div className="detail-links">
+                {p.demo && (
+                  <a
+                    href={p.demo}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="mini-cta"
+                  >
+                    Demo
+                  </a>
+                )}
+                {p.repo && (
+                  <a
+                    href={p.repo}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="mini-cta ghost"
+                  >
+                    Código
+                  </a>
+                )}
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
+    </article>
+  );
+}
+
+export default function Projects() {
+  const sectionRef = useRef(null);
+  const bgRef = useRef(null);
+
+  const [openIdx, setOpenIdx] = useState(null);
+
+  const [enter, setEnter] = useState(false);
+  useEffect(() => {
+    const t = setTimeout(() => setEnter(true), 40);
+    return () => clearTimeout(t);
+  }, []);
+
+  useEffect(() => {
+    const prefersReduced = window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    ).matches;
+    if (prefersReduced) return;
+
+    const handler = () => {
+      if (!sectionRef.current || !bgRef.current) return;
+      const rect = sectionRef.current.getBoundingClientRect();
+      const yInSection = -rect.top;
+      const bgOff = yInSection * 0.12;
+      bgRef.current.style.setProperty("--py", `${bgOff.toFixed(0)}px`);
+    };
+
+    handler();
+    const lenis = window.__lenis;
+    if (lenis) {
+      lenis.on("scroll", handler);
+      return () => lenis.off("scroll", handler);
+    } else {
+      const onScroll = () => requestAnimationFrame(handler);
+      window.addEventListener("scroll", onScroll, { passive: true });
+      window.addEventListener("resize", onScroll);
+      return () => {
+        window.removeEventListener("scroll", onScroll);
+        window.removeEventListener("resize", onScroll);
+      };
+    }
+  }, []);
+
+  useEffect(() => {
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) {
+            e.target.classList.add("reveal");
+            e.target.classList.remove("hidden");
+            io.unobserve(e.target);
+          }
+        });
+      },
+      { threshold: 0.12 }
+    );
+    sectionRef.current
+      ?.querySelectorAll(".proj-card")
+      ?.forEach((el) => io.observe(el));
+    return () => io.disconnect();
+  }, []);
+
+  const cards = useMemo(() => PROJECTS, []);
+
+  return (
+    <section
+      ref={sectionRef}
+      id="proyectos"
+      className={`projects-wrap ${
+        enter ? "page-enter page-enter-active" : "page-enter"
+      }`}
+    >
+      <div
+        ref={bgRef}
+        className="projects-bg-img"
+        style={{ backgroundImage: 'url("/images/fondoProyectos.png")' }}
+        aria-hidden="true"
+      />
+      <div className="projects-bg" aria-hidden="true" />
+
+      <div className="projects-container">
+        <header className="projects-header">
+          <h2>Proyectos</h2>
+          <p className="projects-sub">
+            Una selección de trabajos recientes. Haz clic en la imagen/título
+            para abrir el proyecto o usa <b>Ver detalles</b> para más info.
+          </p>
+        </header>
+
+        <div className="projects-grid">
+          {cards.map((p, i) => (
+            <ProjectCard
+              key={p.title}
+              p={p}
+              idx={i}
+              open={openIdx === i}
+              onToggle={() => setOpenIdx(openIdx === i ? null : i)}
+            />
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}

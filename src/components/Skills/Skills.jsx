@@ -80,7 +80,7 @@ const SKILLS = [
 
 const HIGHLIGHTS = [
   { label: "Stack principal", value: "React / Node" },
-  { label: "Proyectos", value: "+20" },
+  { label: "Proyectos", value: "+10" },
   { label: "Experiencia", value: "6 meses" },
   { label: "Producción", value: "Deploy CI/CD" },
 ];

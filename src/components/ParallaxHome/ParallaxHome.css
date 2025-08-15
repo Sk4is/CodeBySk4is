@@ -16,7 +16,7 @@
   transform: translate3d(0, var(--py, 0px), 0) scale(1);
   transform-origin: center;
   pointer-events: none;
-  filter: brightness(0.92) saturate(0.95);
+  filter: brightness(0.92) saturate(0.95) blur(2px);
 }
 
 .pt-bg::before {
