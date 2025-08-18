@@ -162,3 +162,60 @@
 @media (prefers-reduced-motion: reduce){
   .ico, .ft-col a, .ft-top { transition: none; }
 }
+
+@media (max-width: 640px) {
+  .ft-inner {
+    padding: 24px 14px 8px;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 24px;
+    justify-items: center;
+    text-align: center;
+  }
+
+  .ft-brand .ft-logo img {
+    height: 84px;
+  }
+
+  .ft-tagline {
+    font-size: 0.9rem;
+    margin-top: 8px;
+  }
+
+  .ft-nav {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+    justify-content: center;
+  }
+
+  .ft-col h3 {
+    font-size: 0.85rem;
+    margin-bottom: 8px;
+  }
+
+  .ft-col a {
+    font-size: 0.95rem;
+  }
+
+  .ft-social {
+    gap: 10px;
+  }
+
+  .ico {
+    width: 32px;
+    height: 32px;
+  }
+
+  .ft-bottom {
+    padding: 12px 14px 24px;
+    flex-direction: column;
+    gap: 10px;
+    text-align: center;
+  }
+
+  .ft-top {
+    width: 32px;
+    height: 32px;
+  }
+}
