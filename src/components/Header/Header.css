@@ -136,4 +136,14 @@
     left: auto;
     width: 380px;
   }
+
+  @media (max-width: 720px) and (prefers-reduced-motion: reduce) {
+  .site-header,
+  .hamburger span,
+  .menu-overlay,
+  .menu-panel,
+  .menu-panel a {
+    transition: none !important;
+  }
+}
 }
