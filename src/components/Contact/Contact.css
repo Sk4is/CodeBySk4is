@@ -179,3 +179,52 @@
 .contact-info li {
   margin: 6px 0;
 }
+
+@media (max-width: 640px) {
+  .contact-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .contact-wrap {
+    padding: calc(var(--header-h) + 16px) 12px 60px;
+  }
+
+  .contact-title {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+  }
+
+  .contact-form {
+    padding: 16px;
+    gap: 12px;
+  }
+
+  .contact-form label {
+    font-size: 0.85rem;
+  }
+
+  .contact-form input,
+  .contact-form textarea {
+    font-size: 0.95rem;
+    padding: 8px;
+  }
+
+  .contact-btn {
+    width: 100%;
+    padding: 12px;
+    font-size: 1rem;
+  }
+
+  .contact-info {
+    padding: 16px;
+  }
+
+  .contact-info h3 {
+    font-size: 1.1rem;
+  }
+
+  .contact-info li {
+    font-size: 0.95rem;
+  }
+}

@@ -144,3 +144,18 @@
     transform: none !important;
   }
 }
+
+@media (max-width: 640px) {
+  .pt-container {
+    width: min(94vw, 520px);
+  }
+
+  .pt-grid {
+    gap: 10px;
+  }
+
+  .pt-content h1 {
+    margin-bottom: -28%;
+    font-size: 1.6rem;
+  }
+}

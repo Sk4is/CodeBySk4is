@@ -3,7 +3,8 @@
   top: 0;
   inset-inline: 0;
   z-index: 1000;
-  transition: background-color 220ms ease, backdrop-filter 220ms ease, box-shadow 220ms ease;
+  transition: background-color 220ms ease, backdrop-filter 220ms ease,
+    box-shadow 220ms ease;
   background-color: transparent;
   backdrop-filter: none;
 }
@@ -11,7 +12,7 @@
 .site-header.is-scrolled {
   background-color: rgba(0, 0, 0, 0.25);
   backdrop-filter: blur(10px);
-  box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
 }
 
 .header-inner {
@@ -63,42 +64,42 @@
   transform: translateY(calc(-1 * (var(--gap) + var(--bar-h)))) rotate(-45deg);
 }
 
-.menu-overlay{
+.menu-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,.3);
+  background: rgba(0, 0, 0, 0.3);
   backdrop-filter: blur(8px);
   z-index: 999;
   opacity: 0;
   pointer-events: none;
   visibility: hidden;
   display: none;
-  transition: opacity .22s ease, visibility 0s linear .22s;
+  transition: opacity 0.22s ease, visibility 0s linear 0.22s;
 }
-.menu-overlay.show{
+.menu-overlay.show {
   opacity: 1;
   pointer-events: auto;
   visibility: visible;
   display: block;
-  transition: opacity .22s ease;
+  transition: opacity 0.22s ease;
 }
 
-.menu-panel{
+.menu-panel {
   position: absolute;
   top: 72px;
   right: 16px;
   left: 16px;
   border-radius: 16px;
-  background: rgba(20,20,20,.7);
+  background: rgba(20, 20, 20, 0.7);
   backdrop-filter: blur(14px);
-  box-shadow: 0 20px 50px rgba(0,0,0,.4);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
   transform: translateY(-10px);
   opacity: 0;
   pointer-events: none;
   display: none;
-  transition: transform .22s ease, opacity .22s ease;
+  transition: transform 0.22s ease, opacity 0.22s ease;
 }
-.menu-overlay.show .menu-panel{
+.menu-overlay.show .menu-panel {
   transform: translateY(0);
   opacity: 1;
   pointer-events: auto;
@@ -119,13 +120,13 @@
   color: #fff;
   text-decoration: none;
   font-weight: 600;
-  letter-spacing: .3px;
+  letter-spacing: 0.3px;
   border-radius: 10px;
   transition: background-color 160ms ease, transform 120ms ease;
 }
 
 .menu-panel a:hover {
-  background-color: rgba(255,255,255,0.08);
+  background-color: rgba(255, 255, 255, 0.08);
   color: #00ffdd;
   transform: translateX(2px);
 }
@@ -136,8 +137,9 @@
     left: auto;
     width: 380px;
   }
+}
 
-  @media (max-width: 720px) and (prefers-reduced-motion: reduce) {
+@media (max-width: 720px) and (prefers-reduced-motion: reduce) {
   .site-header,
   .hamburger span,
   .menu-overlay,
@@ -146,4 +148,69 @@
     transition: none !important;
   }
 }
+
+@media (max-width: 640px) {
+  .header-inner {
+    height: 56px;
+    padding: 0 12px;
+  }
+
+  .brand-logo {
+    height: 48px;
+  }
+
+  .hamburger {
+    --bar-w: 20px;
+    --bar-h: 2px;
+    --gap: 4px;
+    padding: 10px;
+    margin-right: 6px; /* evita que se pegue/salga del borde */
+    z-index: 1001;
+  }
+
+  .site-header.is-scrolled {
+    background-color: rgba(0,0,0,0.28);
+    backdrop-filter: blur(8px);
+    box-shadow: 0 4px 18px rgba(0,0,0,0.22);
+  }
+
+  .menu-overlay{
+    background: rgba(0,0,0,.35);
+    backdrop-filter: blur(6px);
+  }
+
+  .menu-panel{
+    top: calc(56px + env(safe-area-inset-top, 0px));
+    right: 12px;
+    left: 12px;
+    border-radius: 14px;
+    transform: translateY(-8px);
+    background: rgba(20,20,20,.78);
+    backdrop-filter: blur(10px);
+  }
+
+  .menu-panel ul {
+    padding: 14px 10px;
+    gap: 4px;
+  }
+
+  .menu-panel a {
+    padding: 12px;
+    border-radius: 10px;
+    letter-spacing: .25px;
+  }
+
+  .menu-panel a:hover {
+    transform: translateX(1px);
+  }
+}
+
+@media (max-width: 640px) and (prefers-reduced-motion: reduce) {
+  .site-header,
+  .hamburger span,
+  .menu-overlay,
+  .menu-panel,
+  .menu-panel a {
+    transition: none !important;
+  }
 }

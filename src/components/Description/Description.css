@@ -90,3 +90,43 @@ ul.list li {
 }
 
 #curriculum{ scroll-margin-top: calc(var(--header-h) + 16px); }
+
+@media (max-width: 640px) {
+  .desc-container {
+    width: min(94vw, 520px);
+  }
+
+  .desc-content {
+    padding: 32px 12px 60px;
+  }
+
+  .desc-title {
+    font-size: 1.8rem;
+    margin-bottom: 32px;
+  }
+
+  .desc-section {
+    padding: 18px;
+    margin-bottom: 24px;
+  }
+
+  .desc-section h3 {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+  }
+
+  .desc-section li {
+    font-size: 0.95rem;
+    margin-bottom: 12px;
+  }
+
+  .desc-skills {
+    gap: 8px;
+  }
+
+  .desc-skills span {
+    font-size: 0.85rem;
+    padding: 5px 10px;
+  }
+}
+
