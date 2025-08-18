@@ -10,11 +10,16 @@ export default function Contact() {
   });
   const [sent, setSent] = useState(false);
   const [error, setError] = useState("");
+  const [enter, setEnter] = useState(false);
 
   const sectionRef = useRef(null);
   const bgRef = useRef(null);
 
-  // Parallax fondo (compatible con Lenis si lo usas)
+  useEffect(() => {
+    const t = setTimeout(() => setEnter(true), 40);
+    return () => clearTimeout(t);
+  }, []);
+
   useEffect(() => {
     const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (prefersReduced) return;
@@ -23,7 +28,7 @@ export default function Contact() {
       if (!sectionRef.current || !bgRef.current) return;
       const rect = sectionRef.current.getBoundingClientRect();
       const yInSection = -rect.top;
-      const bgOff = yInSection * 0.12; // 0.08–0.16 sensación de lejanía
+      const bgOff = yInSection * 0.12;
       bgRef.current.style.setProperty("--py", `${bgOff.toFixed(0)}px`);
     };
 
@@ -48,33 +53,34 @@ export default function Contact() {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  // ENVÍO sin mailto, sin abrir cliente: via FormSubmit (sin cuentas)
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
     setSent(false);
 
-    // Construimos los datos como si fuera un formulario real
+    const fullName = `${form.firstName} ${form.lastName}`.trim();
+
     const fd = new FormData();
     fd.append("firstName", form.firstName);
     fd.append("lastName", form.lastName);
     fd.append("email", form.email);
     fd.append("message", form.message);
 
-    // Extras de formsubmit
     fd.append("_captcha", "false");
-    fd.append("_subject", `Mensaje de ${form.firstName} ${form.lastName}`);
     fd.append("_template", "box");
+    fd.append("_subject", `Mensaje de ${fullName} — CodeBySk4is`);
+    fd.append("_replyto", form.email);
+    fd.append("_from", `${fullName} — CodeBySk4is`);
 
     try {
       const res = await fetch("https://formsubmit.co/adrianperezagredano@gmail.com", {
         method: "POST",
         body: fd,
+        headers: { Accept: "application/json" },
       });
       if (!res.ok) throw new Error("No se pudo enviar el mensaje.");
       setSent(true);
       setForm({ firstName: "", lastName: "", email: "", message: "" });
-      // Oculta auto el popup después de unos segundos (opcional)
       setTimeout(() => setSent(false), 4000);
     } catch (err) {
       setError("Hubo un problema al enviar tu mensaje. Inténtalo de nuevo.");
@@ -85,9 +91,8 @@ export default function Contact() {
     <section
       id="contacto"
       ref={sectionRef}
-      className="contact-wrap page-enter page-enter-active"
+      className={`contact-wrap ${enter ? "page-enter page-enter-active" : "page-enter"}`}
     >
-      {/* Fondo con parallax */}
       <div
         ref={bgRef}
         className="contact-bg-img"
@@ -102,7 +107,6 @@ export default function Contact() {
           <p>¿Tienes una idea o proyecto? Escríbeme y te respondo enseguida.</p>
         </header>
 
-        {/* Popups */}
         {sent && (
           <div className="popup-success" role="status" aria-live="polite">
             ✅ ¡Tu mensaje se envió correctamente!
@@ -162,7 +166,6 @@ export default function Contact() {
             </button>
           </form>
 
-          {/* Info lateral */}
           <aside className="contact-info">
             <div className="info-card">
               <h3>Información</h3>
