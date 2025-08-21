@@ -4,7 +4,6 @@ import "./Projects.css";
 const PROJECTS = [
   {
     title: "GameVault",
-    href: "https://game-vault-omega.vercel.app",
     cover: "/images/gameVault.png",
     year: "2025",
     tags: ["React", "Vite", "JavaScript"],
@@ -19,7 +18,6 @@ const PROJECTS = [
     ],
     stack: ["React", "Vite", "CSS3", "HTML5", "JavaScript", "Express", "MySQL", "Axios", "React Router"],
     repo: "https://github.com/Sk4is/gameVault",
-    demo: "https://game-vault-omega.vercel.app",
     target: "_blank",
   },
   {
@@ -54,7 +52,7 @@ const PROJECTS = [
   },
   {
     title: "To Do List",
-    href: "https://to-do-list-rose-theta-11.vercel.app",
+    href: "https://to-do-list-10.vercel.app",
     cover: "/images/toDoList.png",
     year: "2024",
     tags: ["React", "Charts", "API"],
@@ -64,7 +62,7 @@ const PROJECTS = [
     features: ["Streaming SSE", "Cache SWR", "Export CSV"],
     stack: ["React", "Recharts", "SWR"],
     repo: "https://github.com/Sk4is/toDoList",
-    demo: "https://to-do-list-rose-theta-11.vercel.app",
+    demo: "https://to-do-list-10.vercel.app",
     target: "_blank",
   },
   {
