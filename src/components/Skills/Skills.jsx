@@ -36,6 +36,30 @@ const SKILLS = [
     category: "frontend",
     tags: ["Hooks", "SPA", "Rutas"],
   },
+  {
+    name: "TypeScript",
+    level: 60,
+    category: "frontend",
+    tags: ["Tipado", "Interfaces"],
+  },
+  {
+    name: "PHP",
+    level: 60,
+    category: "backend",
+    tags: ["Laravel", "Web"],
+  },
+  {
+    name: "Java",
+    level: 75,
+    category: "backend",
+    tags: ["POO", "Spring"],
+  },
+  {
+    name: "Base de Datos",
+    level: 72,
+    category: "backend",
+    tags: ["Modelado", "Optimización"],
+  },
   { name: "Vite", level: 78, category: "frontend", tags: ["Build rápido"] },
   {
     name: "Node.js",
